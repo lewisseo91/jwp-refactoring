@@ -2,7 +2,7 @@ package kitchenpos.menu.dto;
 
 import kitchenpos.menu.domain.Menu;
 import kitchenpos.menu.domain.MenuProduct;
-import kitchenpos.menu.validate.MenuGroupMustExist;
+import kitchenpos.menu.dto.validate.MenuGroupMustExist;
 import kitchenpos.menugroup.domain.MenuGroup;
 
 import javax.validation.constraints.NotNull;

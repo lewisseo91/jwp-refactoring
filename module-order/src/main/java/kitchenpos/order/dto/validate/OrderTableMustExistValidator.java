@@ -1,6 +1,6 @@
-package kitchenpos.menu.validate;
+package kitchenpos.order.dto.validate;
 
-import kitchenpos.menugroup.domain.MenuGroupRepository;
+import kitchenpos.ordertable.domain.OrderTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -10,18 +10,17 @@ import javax.validation.ConstraintValidatorContext;
 
 @Component // mandatory!!! (or one of its descendants) to enable `@Autowired`
 @Scope("request") // not mandatory, but probably "good" for "validation"
-public class MenuGroupMustExistValidator implements ConstraintValidator<MenuGroupMustExist, Long> {
+public class OrderTableMustExistValidator implements ConstraintValidator<OrderTableMustExist, Long> {
     @Autowired
-    private MenuGroupRepository menuGroupRepository;
+    private OrderTableRepository orderTableRepository;
 
-    public MenuGroupMustExistValidator(MenuGroupRepository menuGroupRepository) {
-        this.menuGroupRepository = menuGroupRepository;
+    public OrderTableMustExistValidator(OrderTableRepository orderTableRepository) {
+        this.orderTableRepository = orderTableRepository;
     }
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
 
-        boolean check = menuGroupRepository.existsById(value);
-        return check;
+        return orderTableRepository.existsById(value);
     }
 }

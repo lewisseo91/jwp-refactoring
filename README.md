@@ -272,6 +272,10 @@ _ menuGroup은 왜 필수일까..?
   - 주문 테이블 <-> 테이블 그룹
 
 ### step 5 추가적 할 일
-- [ ] Bean validation 극한까지 써 보기
+- [x] Bean validation 극한까지 써 보기
 - [ ] Controller 테스트 추가 + ATDD 시나리오 짜기
+
+- Validation 그룹핑 현재 쓰지 않은 이유
+  - grouping 후 validate 할 때 조건에 따라 분기를 타야 하는데 집약도가 너무 올라간다고 생각함
+  
   

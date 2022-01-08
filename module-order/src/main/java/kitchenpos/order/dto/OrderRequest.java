@@ -3,13 +3,17 @@ package kitchenpos.order.dto;
 import kitchenpos.order.domain.Order;
 import kitchenpos.order.domain.OrderLineItem;
 import kitchenpos.order.domain.OrderStatus;
+import kitchenpos.order.dto.validate.OrderTableMustExist;
 import kitchenpos.ordertable.domain.OrderTable;
 
 import java.util.List;
 
 public class OrderRequest {
+    @OrderTableMustExist
     private Long orderTableId;
+
     private OrderStatus orderStatus;
+
     private List<OrderLineItem> orderLineItems;
 
     public OrderRequest() {

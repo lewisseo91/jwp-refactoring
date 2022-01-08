@@ -1,8 +1,7 @@
 package kitchenpos.menu.dto;
 
-import kitchenpos.menu.dto.MenuRequest;
 import kitchenpos.common.CustomLocalValidatorFactoryBean;
-import kitchenpos.menu.validate.MenuGroupMustExistValidator;
+import kitchenpos.menu.dto.validate.MenuGroupMustExistValidator;
 import kitchenpos.menugroup.domain.MenuGroupRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
