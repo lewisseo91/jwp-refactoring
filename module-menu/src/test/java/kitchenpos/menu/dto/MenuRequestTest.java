@@ -1,4 +1,4 @@
-package kitchenpos.menu.application;
+package kitchenpos.menu.dto;
 
 import kitchenpos.menu.dto.MenuRequest;
 import kitchenpos.common.CustomLocalValidatorFactoryBean;

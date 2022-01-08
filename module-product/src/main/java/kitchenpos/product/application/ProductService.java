@@ -7,9 +7,12 @@ import kitchenpos.product.dto.ProductRequest;
 import kitchenpos.product.dto.ProductResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -19,7 +22,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponse create(final ProductRequest productRequest) {
+    public ProductResponse create(@Valid final ProductRequest productRequest) {
         Product product = productRepository.save(productRequest.toProduct());
         return ProductResponse.of(product);
     }
