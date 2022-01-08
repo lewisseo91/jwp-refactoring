@@ -17,8 +17,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-
 
 @DisplayName("메뉴 서비스 관련 테스트")
 @ExtendWith(MockitoExtension.class)
@@ -59,6 +64,18 @@ class MenuServiceTest {
         짜장면_두개 = new MenuProduct(2L, new Menu(), 짜장면_상품.getId(), 2);
         짜장면 = new Menu("짜장면", 10000, new MenuGroup(), Lists.newArrayList(짜장면_하나, 짜장면_두개));
         짜장면_요청 = new MenuRequest("짜장면", 10000, 1L, Lists.newArrayList(짜장면_하나, 짜장면_두개));
+    }
+
+    @DisplayName("dto 유효값 테스트")
+    @Test
+    void dtoValidateTest() {
+        when(menuGroupRepository.existsById(any())).thenReturn(true);
+
+        MenuRequest menuRequest = new MenuRequest("테스트", null, 1L, Lists.emptyList());
+        final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        final Collection<ConstraintViolation<MenuRequest>> constraintViolations = validator.validate(menuRequest);
+        assertEquals("가격은 빈 값이 들어올 수 없습니다.", constraintViolations.iterator().next().getMessage());
+//        menuService.create(menuRequest);
     }
 
     @DisplayName("메뉴를 등록할 수 있다.")

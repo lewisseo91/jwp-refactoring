@@ -2,6 +2,7 @@ package kitchenpos.menu.dto;
 
 import kitchenpos.menu.domain.Menu;
 import kitchenpos.menu.domain.MenuProduct;
+import kitchenpos.menu.validate.MenuGroupMustExist;
 import kitchenpos.menugroup.domain.MenuGroup;
 
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ public class MenuRequest {
     @NotNull(message = "가격은 빈 값이 들어올 수 없습니다.")
     private BigDecimal price;
 
+    @MenuGroupMustExist
     private Long menuGroupId;
 
     private List<MenuProduct> menuProducts;

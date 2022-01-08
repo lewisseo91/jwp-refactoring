@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @Service
 public class MenuService {
     private final MenuRepository menuRepository;
@@ -30,7 +31,6 @@ public class MenuService {
         this.menuValidator = menuValidator;
     }
 
-    @Validated
     @Transactional
     public MenuResponse create(@Valid MenuRequest menuRequest) {
         MenuGroup menuGroup = findMenuGroupById(menuRequest.getMenuGroupId());

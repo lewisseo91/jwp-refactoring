@@ -2,17 +2,26 @@ package kitchenpos.menu.validate;
 
 import kitchenpos.menugroup.domain.MenuGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class MenuGroupMustExistValidator implements ConstraintValidator<MenuGroupMustExist, String> {
+@Component // mandatory!!! (or one of its descendants) to enable `@Autowired`
+@Scope("request") // not mandatory, but probably "good" for "validation"
+public class MenuGroupMustExistValidator implements ConstraintValidator<MenuGroupMustExist, Long> {
     @Autowired
     private MenuGroupRepository menuGroupRepository;
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public MenuGroupMustExistValidator(MenuGroupRepository menuGroupRepository) {
+        this.menuGroupRepository = menuGroupRepository;
+    }
 
-        return menuGroupRepository.existsById(Long.parseLong(value));
+    @Override
+    public boolean isValid(Long value, ConstraintValidatorContext context) {
+
+        boolean check = menuGroupRepository.existsById(value);
+        return check;
     }
 }
