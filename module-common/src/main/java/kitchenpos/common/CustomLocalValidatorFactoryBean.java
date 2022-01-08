@@ -1,4 +1,4 @@
-package kitchenpos;
+package kitchenpos.common;
 
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
